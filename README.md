@@ -1,145 +1,145 @@
 # iOSWeather ☀️
 
-A production-ready iOS weather application MVP demonstrating Senior-level iOS development practices with SwiftUI, MVVM architecture, and comprehensive testing.
+Una aplicación MVP de clima para iOS lista para producción que demuestra prácticas de desarrollo iOS de nivel Senior con SwiftUI, arquitectura MVVM y testing exhaustivo.
 
-## Features
+## Características
 
-- **Current Weather**: Real-time weather based on GPS location using CoreLocation
-- **City Search**: Search any city worldwide with autocomplete suggestions
-- **Search History**: Automatic saving and management of search history
-- **Clean Architecture**: MVVM pattern with protocol-based dependency injection
-- **Comprehensive Testing**: Unit tests for all ViewModels with mock implementations
+- **Clima Actual**: Clima en tiempo real basado en ubicación GPS usando CoreLocation
+- **Búsqueda de Ciudades**: Busca cualquier ciudad del mundo con sugerencias de autocompletado
+- **Historial de Búsquedas**: Guardado y gestión automática del historial de búsquedas
+- **Arquitectura Limpia**: Patrón MVVM con inyección de dependencias basada en protocolos
+- **Testing Exhaustivo**: Pruebas unitarias para todos los ViewModels con implementaciones mock
 
-## Screenshots
+## Capturas de Pantalla
 
-The app includes three main tabs:
-1. **Current**: Shows weather for your current GPS location
-2. **Search**: Search for any city and view its weather
-3. **History**: Access your previous searches
+La aplicación incluye tres tabs principales:
+1. **Actual**: Muestra el clima para tu ubicación GPS actual
+2. **Búsqueda**: Busca cualquier ciudad y visualiza su clima
+3. **Historial**: Accede a tus búsquedas anteriores
 
-## Technology Stack
+## Stack Tecnológico
 
 - **iOS 15.0+**
-- **SwiftUI** - Declarative UI framework
-- **Swift** - Modern concurrency with async/await
-- **Combine** - Reactive programming for UI bindings
-- **Alamofire** - Elegant HTTP networking
-- **Kingfisher** - Asynchronous image downloading and caching
-- **XCTest** - Unit testing framework
+- **SwiftUI** - Framework declarativo de UI
+- **Swift** - Concurrencia moderna con async/await
+- **Combine** - Programación reactiva para bindings de UI
+- **Alamofire** - Networking HTTP elegante
+- **Kingfisher** - Descarga y caché asíncrono de imágenes
+- **XCTest** - Framework de pruebas unitarias
 
-## Architecture
+## Arquitectura
 
-### MVVM Pattern
+### Patrón MVVM
 
 ```
 ┌─────────────────────────────────────────────┐
-│              View Layer (SwiftUI)           │
+│         Capa de Vista (SwiftUI)             │
 │  CurrentWeatherView │ SearchView │ History  │
 └───────────────┬─────────────────────────────┘
                 │ @Published
 ┌───────────────▼─────────────────────────────┐
-│           ViewModel Layer                   │
+│           Capa ViewModel                    │
 │  CurrentWeatherVM │ SearchVM │ HistoryVM    │
 └───────────────┬─────────────────────────────┘
-                │ Protocol Injection
+                │ Inyección de Protocolos
 ┌───────────────▼─────────────────────────────┐
-│           Service Layer                     │
+│           Capa de Servicios                 │
 │  NetworkService │ LocationService │ Storage │
 └───────────────┬─────────────────────────────┘
                 │
 ┌───────────────▼─────────────────────────────┐
-│        External Dependencies                │
+│        Dependencias Externas                │
 │  Open-Meteo API │ CoreLocation │ UserDefaults│
 └─────────────────────────────────────────────┘
 ```
 
-### Key Principles
+### Principios Clave
 
-- **Separation of Concerns**: Each layer has a single responsibility
-- **Dependency Injection**: Protocol-based DI for testability
-- **Reactive UI**: SwiftUI views react to ViewModel state changes
-- **Error Handling**: Comprehensive error handling at all layers
-- **Async/Await**: Modern Swift concurrency throughout
+- **Separación de Responsabilidades**: Cada capa tiene una única responsabilidad
+- **Inyección de Dependencias**: DI basada en protocolos para testabilidad
+- **UI Reactiva**: Las vistas SwiftUI reaccionan a los cambios de estado del ViewModel
+- **Manejo de Errores**: Manejo exhaustivo de errores en todas las capas
+- **Async/Await**: Concurrencia moderna de Swift en todo el proyecto
 
-## Setup Instructions
+## Instrucciones de Configuración
 
-### Prerequisites
+### Prerequisitos
 
-- macOS Ventura 13.0+ (for Xcode 15)
+- macOS Ventura 13.0+ (para Xcode 15)
 - Xcode 15.0+
-- iOS Simulator or physical device running iOS 15.0+
+- Simulador iOS o dispositivo físico con iOS 15.0+
 
-### Installation
+### Instalación
 
-1. **Clone the repository**
+1. **Clonar el repositorio**
    ```bash
    git clone <repository-url>
    cd iosWeather
    ```
 
-2. **Open the project in Xcode**
+2. **Abrir el proyecto en Xcode**
    ```bash
    open iosWeather.xcodeproj
    ```
 
-3. **Add Swift Package Dependencies**
+3. **Agregar Dependencias de Swift Package**
 
-   The project requires two SPM packages. In Xcode:
+   El proyecto requiere dos paquetes SPM. En Xcode:
 
-   **a) Add Alamofire:**
+   **a) Agregar Alamofire:**
    - File → Add Package Dependencies
-   - Enter URL: `https://github.com/Alamofire/Alamofire.git`
-   - Dependency Rule: Up to Next Major Version 5.0.0
-   - Add to target: `iosWeather`
+   - Ingresar URL: `https://github.com/Alamofire/Alamofire.git`
+   - Regla de Dependencia: Up to Next Major Version 5.0.0
+   - Agregar al target: `iosWeather`
 
-   **b) Add Kingfisher:**
+   **b) Agregar Kingfisher:**
    - File → Add Package Dependencies
-   - Enter URL: `https://github.com/onevcat/Kingfisher.git`
-   - Dependency Rule: Up to Next Major Version 7.0.0
-   - Add to target: `iosWeather`
+   - Ingresar URL: `https://github.com/onevcat/Kingfisher.git`
+   - Regla de Dependencia: Up to Next Major Version 7.0.0
+   - Agregar al target: `iosWeather`
 
-4. **Build and Run**
-   - Select a simulator (e.g., iPhone 15)
-   - Press `Cmd+R` or click the Run button
-   - Grant location permissions when prompted
+4. **Compilar y Ejecutar**
+   - Seleccionar un simulador (ej., iPhone 15)
+   - Presionar `Cmd+R` o hacer clic en el botón Run
+   - Otorgar permisos de ubicación cuando se solicite
 
-## Project Structure
+## Estructura del Proyecto
 
 ```
 iosWeather/
-├── Models/                         # Data models
-│   ├── WeatherData.swift           # Weather API response models
-│   ├── Location.swift              # Location and geocoding models
-│   └── SearchHistory.swift         # Search history persistence model
+├── Models/                         # Modelos de datos
+│   ├── WeatherData.swift           # Modelos de respuesta de API de clima
+│   ├── Location.swift              # Modelos de ubicación y geocodificación
+│   └── SearchHistory.swift         # Modelo de persistencia del historial
 │
-├── Services/                       # Business logic layer
-│   ├── NetworkService.swift        # Alamofire-based API client
-│   ├── LocationService.swift       # CoreLocation wrapper
-│   └── StorageService.swift        # UserDefaults persistence
+├── Services/                       # Capa de lógica de negocio
+│   ├── NetworkService.swift        # Cliente API basado en Alamofire
+│   ├── LocationService.swift       # Wrapper de CoreLocation
+│   └── StorageService.swift        # Persistencia con UserDefaults
 │
-├── ViewModels/                     # MVVM ViewModels
+├── ViewModels/                     # ViewModels MVVM
 │   ├── CurrentWeatherViewModel.swift
 │   ├── SearchViewModel.swift
 │   └── HistoryViewModel.swift
 │
-├── Views/                          # SwiftUI views
-│   ├── MainTabView.swift           # Tab navigation
+├── Views/                          # Vistas SwiftUI
+│   ├── MainTabView.swift           # Navegación por tabs
 │   ├── CurrentWeatherView.swift
 │   ├── SearchView.swift
 │   ├── HistoryView.swift
-│   └── Components/                 # Reusable UI components
+│   └── Components/                 # Componentes UI reutilizables
 │       ├── WeatherCardView.swift
 │       └── LoadingView.swift
 │
-└── iosWeatherApp.swift             # App entry point
+└── iosWeatherApp.swift             # Punto de entrada de la app
 
 iosWeatherTests/
-├── Mocks/                          # Mock implementations
+├── Mocks/                          # Implementaciones mock
 │   ├── MockNetworkService.swift
 │   ├── MockLocationService.swift
 │   └── MockStorageService.swift
 │
-└── ViewModelTests/                 # Unit tests
+└── ViewModelTests/                 # Pruebas unitarias
     ├── CurrentWeatherViewModelTests.swift
     ├── SearchViewModelTests.swift
     └── HistoryViewModelTests.swift
@@ -147,22 +147,22 @@ iosWeatherTests/
 
 ## API
 
-This app uses **Open-Meteo API**, a free weather API that doesn't require an API key:
+Esta aplicación usa **Open-Meteo API**, una API de clima gratuita que no requiere clave API:
 
 - **Weather API**: https://api.open-meteo.com/v1/forecast
 - **Geocoding API**: https://geocoding-api.open-meteo.com/v1/search
 
-### Why Open-Meteo?
+### ¿Por qué Open-Meteo?
 
-- ✅ Completely free
-- ✅ No API key required
-- ✅ No rate limits for basic usage
-- ✅ High-quality data
-- ✅ JSON responses
+- ✅ Completamente gratuito
+- ✅ No requiere clave API
+- ✅ Sin límites de tasa para uso básico
+- ✅ Datos de alta calidad
+- ✅ Respuestas en JSON
 
-## Testing
+## Pruebas
 
-### Run All Tests
+### Ejecutar Todas las Pruebas
 
 ```bash
 xcodebuild test -project iosWeather.xcodeproj \
@@ -170,7 +170,7 @@ xcodebuild test -project iosWeather.xcodeproj \
   -destination 'platform=iOS Simulator,name=iPhone 15'
 ```
 
-### Run Specific Test Suite
+### Ejecutar Suite de Pruebas Específica
 
 ```bash
 xcodebuild test -project iosWeather.xcodeproj \
@@ -179,75 +179,75 @@ xcodebuild test -project iosWeather.xcodeproj \
   -only-testing:iosWeatherTests/CurrentWeatherViewModelTests
 ```
 
-### Test Coverage
+### Cobertura de Pruebas
 
-- **CurrentWeatherViewModel**: 6 test cases
-- **SearchViewModel**: 5 test cases
-- **HistoryViewModel**: 6 test cases
+- **CurrentWeatherViewModel**: 6 casos de prueba
+- **SearchViewModel**: 5 casos de prueba
+- **HistoryViewModel**: 6 casos de prueba
 
-All tests use mock implementations for isolated unit testing.
+Todas las pruebas utilizan implementaciones mock para testing unitario aislado.
 
-## Development
+## Desarrollo
 
-### Adding a New Feature
+### Agregar una Nueva Característica
 
-1. Create model in `Models/` (if needed)
-2. Update service protocol in `Services/`
-3. Implement in concrete service class
-4. Create ViewModel in `ViewModels/`
-5. Build SwiftUI view in `Views/`
-6. Create mock in `iosWeatherTests/Mocks/`
-7. Write unit tests in `iosWeatherTests/ViewModelTests/`
+1. Crear modelo en `Models/` (si es necesario)
+2. Actualizar protocolo de servicio en `Services/`
+3. Implementar en clase de servicio concreta
+4. Crear ViewModel en `ViewModels/`
+5. Construir vista SwiftUI en `Views/`
+6. Crear mock en `iosWeatherTests/Mocks/`
+7. Escribir pruebas unitarias en `iosWeatherTests/ViewModelTests/`
 
-### Code Style Guidelines
+### Guías de Estilo de Código
 
-- Use `async/await` for asynchronous code
-- All ViewModels must be marked `@MainActor`
-- Use protocol-based dependency injection
-- Follow MVVM pattern strictly
-- Write tests for all ViewModels
+- Usar `async/await` para código asíncrono
+- Todos los ViewModels deben estar marcados con `@MainActor`
+- Usar inyección de dependencias basada en protocolos
+- Seguir el patrón MVVM estrictamente
+- Escribir pruebas para todos los ViewModels
 
-## Troubleshooting
+## Solución de Problemas
 
-### Location Not Working
+### La Ubicación No Funciona
 
-1. Check Info.plist has location usage descriptions
-2. Reset location permissions: Settings → Privacy → Location Services
-3. Reset simulator: Device → Erase All Content and Settings
+1. Verificar que Info.plist tenga las descripciones de uso de ubicación
+2. Reiniciar permisos de ubicación: Ajustes → Privacidad → Servicios de Ubicación
+3. Reiniciar simulador: Device → Erase All Content and Settings
 
-### Build Errors After Cloning
+### Errores de Compilación Después de Clonar
 
-1. Clean build folder: `Cmd+Shift+K`
-2. Reset package caches: File → Packages → Reset Package Caches
-3. Resolve packages: File → Packages → Resolve Package Versions
+1. Limpiar carpeta de build: `Cmd+Shift+K`
+2. Reiniciar cachés de paquetes: File → Packages → Reset Package Caches
+3. Resolver paquetes: File → Packages → Resolve Package Versions
 
-### Tests Failing
+### Pruebas Fallando
 
-1. Ensure tests are marked `@MainActor`
-2. Verify all async operations use `await`
-3. Check mock configurations in test `setUp()`
+1. Asegurar que las pruebas estén marcadas con `@MainActor`
+2. Verificar que todas las operaciones async usen `await`
+3. Revisar configuraciones de mock en `setUp()` de las pruebas
 
-## Future Enhancements
+## Mejoras Futuras
 
-This MVP can be extended with:
+Este MVP puede extenderse con:
 
-- **Daily/Hourly Forecasts**: 7-day and 24-hour forecasts
-- **Weather Alerts**: Push notifications for severe weather
-- **Widgets**: Home screen and lock screen widgets
-- **Dark Mode**: Custom theming support
-- **Offline Mode**: Cache weather data for offline viewing
-- **Clean Architecture**: Extract Use Cases for better separation
-- **Coordinator Pattern**: Advanced navigation management
-- **Snapshot Tests**: UI regression testing
+- **Pronósticos Diarios/Por Hora**: Pronósticos de 7 días y 24 horas
+- **Alertas de Clima**: Notificaciones push para clima severo
+- **Widgets**: Widgets para pantalla de inicio y pantalla de bloqueo
+- **Modo Oscuro**: Soporte de temas personalizados
+- **Modo Offline**: Caché de datos de clima para visualización sin conexión
+- **Clean Architecture**: Extraer Use Cases para mejor separación
+- **Patrón Coordinator**: Gestión avanzada de navegación
+- **Snapshot Tests**: Pruebas de regresión de UI
 
-## License
+## Licencia
 
-This project is created for educational and portfolio purposes.
+Este proyecto fue creado con propósitos educativos y de portafolio.
 
-## Author
+## Autor
 
 Juan Carlos Suarez Marin
 
 ---
 
-**Note**: This is a production-quality MVP demonstrating best practices for iOS development including clean architecture, dependency injection, reactive programming, and comprehensive testing.
+**Nota**: Este es un MVP de calidad de producción que demuestra las mejores prácticas para desarrollo iOS incluyendo arquitectura limpia, inyección de dependencias, programación reactiva y testing exhaustivo.

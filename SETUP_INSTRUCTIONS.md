@@ -1,57 +1,57 @@
-# Setup Instructions - iOSWeather
+# Instrucciones de Configuración - iOSWeather
 
-## ⚠️ IMPORTANT: SPM Dependencies Required
+## ⚠️ IMPORTANTE: Se Requieren Dependencias SPM
 
-This project **WILL NOT BUILD** until you add the Swift Package Manager dependencies. Follow these instructions carefully.
+Este proyecto **NO COMPILARÁ** hasta que agregues las dependencias de Swift Package Manager. Sigue estas instrucciones cuidadosamente.
 
-## Step-by-Step Setup
+## Configuración Paso a Paso
 
-### Step 1: Open the Project
+### Paso 1: Abrir el Proyecto
 
 ```bash
 cd /Users/juancarlossuarezmarin/Desktop/front/ios/iosWeather
 open iosWeather.xcodeproj
 ```
 
-### Step 2: Add Alamofire (Required)
+### Paso 2: Agregar Alamofire (Requerido)
 
-1. In Xcode, go to **File → Add Package Dependencies...**
-2. In the search field (top right), paste:
+1. En Xcode, ve a **File → Add Package Dependencies...**
+2. En el campo de búsqueda (arriba a la derecha), pega:
    ```
    https://github.com/Alamofire/Alamofire.git
    ```
-3. Click **Add Package**
-4. In the "Dependency Rule" dropdown, select **"Up to Next Major Version"**
-5. Enter version: **5.0.0** (it will use 5.x.x)
-6. Click **Add Package**
-7. In the "Add to Target" dialog:
-   - ✅ Check **iosWeather** (main app target)
-   - ❌ Uncheck **iosWeatherTests**
-   - ❌ Uncheck **iosWeatherUITests**
-8. Click **Add Package**
+3. Haz clic en **Add Package**
+4. En el menú desplegable "Dependency Rule", selecciona **"Up to Next Major Version"**
+5. Ingresa la versión: **5.0.0** (usará 5.x.x)
+6. Haz clic en **Add Package**
+7. En el diálogo "Add to Target":
+   - ✅ Marca **iosWeather** (target de la app principal)
+   - ❌ Desmarca **iosWeatherTests**
+   - ❌ Desmarca **iosWeatherUITests**
+8. Haz clic en **Add Package**
 
-### Step 3: Add Kingfisher (Required)
+### Paso 3: Agregar Kingfisher (Requerido)
 
-1. In Xcode, go to **File → Add Package Dependencies...**
-2. In the search field (top right), paste:
+1. En Xcode, ve a **File → Add Package Dependencies...**
+2. En el campo de búsqueda (arriba a la derecha), pega:
    ```
    https://github.com/onevcat/Kingfisher.git
    ```
-3. Click **Add Package**
-4. In the "Dependency Rule" dropdown, select **"Up to Next Major Version"**
-5. Enter version: **7.0.0** (it will use 7.x.x)
-6. Click **Add Package**
-7. In the "Add to Target" dialog:
-   - ✅ Check **iosWeather** (main app target)
-   - ❌ Uncheck **iosWeatherTests**
-   - ❌ Uncheck **iosWeatherUITests**
-8. Click **Add Package**
+3. Haz clic en **Add Package**
+4. En el menú desplegable "Dependency Rule", selecciona **"Up to Next Major Version"**
+5. Ingresa la versión: **7.0.0** (usará 7.x.x)
+6. Haz clic en **Add Package**
+7. En el diálogo "Add to Target":
+   - ✅ Marca **iosWeather** (target de la app principal)
+   - ❌ Desmarca **iosWeatherTests**
+   - ❌ Desmarca **iosWeatherUITests**
+8. Haz clic en **Add Package**
 
-### Step 4: Verify Dependencies
+### Paso 4: Verificar Dependencias
 
-After adding both packages, verify they're installed:
+Después de agregar ambos paquetes, verifica que estén instalados:
 
-1. In Xcode's Project Navigator (left sidebar), look for:
+1. En el Navegador de Proyectos de Xcode (barra lateral izquierda), busca:
    ```
    iosWeather
    ├── Dependencies
@@ -59,104 +59,104 @@ After adding both packages, verify they're installed:
    │   └── Kingfisher
    ```
 
-2. Or check in: **File → Packages → Package.resolved**
+2. O verifica en: **File → Packages → Package.resolved**
 
-### Step 5: Build the Project
+### Paso 5: Compilar el Proyecto
 
-1. Select a simulator: **iPhone 15** or **iPhone 15 Pro**
-2. Press **Cmd+B** to build
-3. Wait for SPM to resolve and download packages (first time only)
-4. Build should succeed ✅
+1. Selecciona un simulador: **iPhone 15** o **iPhone 15 Pro**
+2. Presiona **Cmd+B** para compilar
+3. Espera a que SPM resuelva y descargue los paquetes (solo la primera vez)
+4. La compilación debería ser exitosa ✅
 
-### Step 6: Run the App
+### Paso 6: Ejecutar la App
 
-1. Press **Cmd+R** or click the ▶️ Run button
-2. When prompted, **Allow** location access
-3. The app should launch successfully! 🎉
+1. Presiona **Cmd+R** o haz clic en el botón ▶️ Run
+2. Cuando se solicite, **permite** el acceso a la ubicación
+3. ¡La app debería iniciarse exitosamente! 🎉
 
-## Troubleshooting
+## Solución de Problemas
 
-### ❌ "No such module 'Alamofire'" error
+### ❌ Error "No such module 'Alamofire'"
 
-**Solution:**
+**Solución:**
 1. File → Packages → Reset Package Caches
 2. File → Packages → Resolve Package Versions
-3. Clean build folder: Shift+Cmd+K
-4. Build again: Cmd+B
+3. Limpiar carpeta de build: Shift+Cmd+K
+4. Compilar nuevamente: Cmd+B
 
 ### ❌ "Cannot find type 'Session' in scope"
 
-**Solution:**
-- Make sure you added Alamofire to the **iosWeather** target (not test targets)
-- Check: Project Settings → iosWeather target → General → Frameworks, Libraries, and Embedded Content
+**Solución:**
+- Asegúrate de haber agregado Alamofire al target **iosWeather** (no a los targets de test)
+- Verifica: Project Settings → target iosWeather → General → Frameworks, Libraries, and Embedded Content
 
-### ❌ Package resolution takes too long
+### ❌ La resolución de paquetes tarda demasiado
 
-**Solution:**
-- Check your internet connection
-- Xcode may be downloading the packages (can take 1-2 minutes first time)
-- Check progress in the top bar of Xcode
+**Solución:**
+- Verifica tu conexión a internet
+- Xcode puede estar descargando los paquetes (puede tardar 1-2 minutos la primera vez)
+- Revisa el progreso en la barra superior de Xcode
 
-### ❌ "Info.plist not found" or location not working
+### ❌ "Info.plist not found" o la ubicación no funciona
 
-**Solution:**
-The `Info.plist` file is already created at:
+**Solución:**
+El archivo `Info.plist` ya fue creado en:
 ```
 iosWeather/Info.plist
 ```
 
-Make sure it's added to the target:
-1. Select `Info.plist` in Project Navigator
-2. In File Inspector (right sidebar), check that **Target Membership** includes "iosWeather"
+Asegúrate de que esté agregado al target:
+1. Selecciona `Info.plist` en el Navegador de Proyectos
+2. En el Inspector de Archivos (barra lateral derecha), verifica que **Target Membership** incluya "iosWeather"
 
-## Alternative: Command Line Setup
+## Alternativa: Configuración por Línea de Comandos
 
-If you prefer command line (advanced):
+Si prefieres la línea de comandos (avanzado):
 
 ```bash
-# This won't work as SPM packages must be added through Xcode UI for app projects
-# You MUST use the Xcode GUI to add packages
+# Esto no funcionará ya que los paquetes SPM deben agregarse a través de la UI de Xcode para proyectos de app
+# DEBES usar la interfaz gráfica de Xcode para agregar paquetes
 ```
 
-## Verification Checklist
+## Lista de Verificación
 
-Before running the app, verify:
+Antes de ejecutar la app, verifica:
 
-- ✅ Alamofire appears in Project Navigator under Dependencies
-- ✅ Kingfisher appears in Project Navigator under Dependencies
-- ✅ Project builds without errors (Cmd+B)
-- ✅ Info.plist exists in iosWeather/ folder
-- ✅ Simulator is selected (not "Any iOS Device")
+- ✅ Alamofire aparece en el Navegador de Proyectos bajo Dependencies
+- ✅ Kingfisher aparece en el Navegador de Proyectos bajo Dependencies
+- ✅ El proyecto compila sin errores (Cmd+B)
+- ✅ Info.plist existe en la carpeta iosWeather/
+- ✅ Hay un simulador seleccionado (no "Any iOS Device")
 
-## Next Steps
+## Siguientes Pasos
 
-Once setup is complete:
+Una vez completada la configuración:
 
-1. **Run the app** (Cmd+R)
-2. **Grant location permission** when prompted
-3. **Explore the three tabs**:
-   - Current: GPS-based weather
-   - Search: City search
-   - History: Search history
+1. **Ejecuta la app** (Cmd+R)
+2. **Otorga permisos de ubicación** cuando se solicite
+3. **Explora las tres pestañas**:
+   - Actual: Clima basado en GPS
+   - Búsqueda: Búsqueda de ciudades
+   - Historial: Historial de búsquedas
 
-4. **Run tests** (Cmd+U)
-   - All ViewModel tests should pass
-   - Uses mock implementations
+4. **Ejecuta los tests** (Cmd+U)
+   - Todos los tests de ViewModel deberían pasar
+   - Usa implementaciones mock
 
-## Need Help?
+## ¿Necesitas Ayuda?
 
-If you encounter issues:
+Si encuentras problemas:
 
-1. Check the **CLAUDE.md** file for detailed architecture documentation
-2. Check the **README.md** file for feature overview
-3. Review error messages carefully
-4. Try cleaning and rebuilding
+1. Revisa el archivo **CLAUDE.md** para documentación detallada de la arquitectura
+2. Revisa el archivo **README.md** para descripción general de características
+3. Revisa cuidadosamente los mensajes de error
+4. Intenta limpiar y recompilar
 
-## Summary
+## Resumen
 
-This project requires manual SPM package addition because:
-- It's an Xcode app project (not a Swift package)
-- SPM dependencies for app projects must be added via Xcode UI
-- The `.xcodeproj` file will be updated automatically
+Este proyecto requiere agregar paquetes SPM manualmente porque:
+- Es un proyecto de app de Xcode (no un paquete Swift)
+- Las dependencias SPM para proyectos de app deben agregarse vía la UI de Xcode
+- El archivo `.xcodeproj` se actualizará automáticamente
 
-After adding Alamofire and Kingfisher, the project is fully ready to build and run! 🚀
+Después de agregar Alamofire y Kingfisher, ¡el proyecto está completamente listo para compilar y ejecutar! 🚀

@@ -1,147 +1,147 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Este archivo proporciona orientación a Claude Code (claude.ai/code) al trabajar con código en este repositorio.
 
-## Project Overview
+## Descripción General del Proyecto
 
-**iOSWeather** is an iOS weather application MVP built with SwiftUI following Senior-level best practices. The app demonstrates clean architecture, dependency injection, and comprehensive testing.
+**iOSWeather** es un MVP de aplicación de clima para iOS construido con SwiftUI siguiendo las mejores prácticas de nivel Senior. La aplicación demuestra arquitectura limpia, inyección de dependencias y testing exhaustivo.
 
-### Key Features
-- Current weather based on GPS location
-- City search with autocomplete
-- Search history with persistence
-- Offline-first architecture with local caching
+### Características Clave
+- Clima actual basado en ubicación GPS
+- Búsqueda de ciudades con autocompletado
+- Historial de búsquedas con persistencia
+- Arquitectura offline-first con caché local
 
-### Technology Stack
-- **UI Framework**: SwiftUI
-- **Language**: Swift (async/await, Combine)
-- **Architecture**: MVVM with protocol-based dependency injection
-- **Weather API**: Open-Meteo API (free, no API key required)
-- **Dependencies**: Alamofire (networking), Kingfisher (image caching)
-- **Package Manager**: Swift Package Manager (SPM)
-- **Testing**: XCTest with mock implementations
+### Stack Tecnológico
+- **Framework de UI**: SwiftUI
+- **Lenguaje**: Swift (async/await, Combine)
+- **Arquitectura**: MVVM con inyección de dependencias basada en protocolos
+- **API de Clima**: Open-Meteo API (gratuita, sin API key requerida)
+- **Dependencias**: Alamofire (networking), Kingfisher (caché de imágenes)
+- **Gestor de Paquetes**: Swift Package Manager (SPM)
+- **Testing**: XCTest con implementaciones mock
 
-## Setup Instructions
+## Instrucciones de Configuración
 
-### 1. Add Swift Package Dependencies
+### 1. Agregar Dependencias de Swift Package
 
-The project requires two SPM packages. Add them through Xcode:
+El proyecto requiere dos paquetes SPM. Agrégalos a través de Xcode:
 
 **Alamofire** (Networking):
 1. File → Add Package Dependencies
-2. Enter: `https://github.com/Alamofire/Alamofire.git`
-3. Version: Up to Next Major 5.0.0
-4. Add to target: `iosWeather`
+2. Ingresar: `https://github.com/Alamofire/Alamofire.git`
+3. Versión: Up to Next Major 5.0.0
+4. Agregar al target: `iosWeather`
 
-**Kingfisher** (Image Loading):
+**Kingfisher** (Carga de Imágenes):
 1. File → Add Package Dependencies
-2. Enter: `https://github.com/onevcat/Kingfisher.git`
-3. Version: Up to Next Major 7.0.0
-4. Add to target: `iosWeather`
+2. Ingresar: `https://github.com/onevcat/Kingfisher.git`
+3. Versión: Up to Next Major 7.0.0
+4. Agregar al target: `iosWeather`
 
-### 2. Configure Info.plist
+### 2. Configurar Info.plist
 
-Ensure `Info.plist` contains location permissions (already configured):
+Asegurar que `Info.plist` contenga los permisos de ubicación (ya configurado):
 - `NSLocationWhenInUseUsageDescription`
 - `NSLocationAlwaysAndWhenInUseUsageDescription`
 
-### 3. Build and Run
+### 3. Compilar y Ejecutar
 
 ```bash
 open iosWeather.xcodeproj
-# Then Cmd+R in Xcode
+# Luego Cmd+R en Xcode
 ```
 
-Or via command line:
+O vía línea de comandos:
 ```bash
 xcodebuild -project iosWeather.xcodeproj -scheme iosWeather -destination 'platform=iOS Simulator,name=iPhone 15' build
 ```
 
-## Architecture
+## Arquitectura
 
-### MVVM Pattern
+### Patrón MVVM
 
-The project follows clean MVVM architecture:
+El proyecto sigue arquitectura MVVM limpia:
 
 ```
-View → ViewModel → Service → API/Storage
+Vista → ViewModel → Servicio → API/Storage
   ↓         ↓          ↓
 SwiftUI  @Published  Protocol
 ```
 
-**Key Principles**:
-- Views are dumb and declarative
-- ViewModels contain all business logic
-- Services are protocol-based for dependency injection
-- All dependencies can be mocked for testing
+**Principios Clave**:
+- Las vistas son tontas y declarativas
+- Los ViewModels contienen toda la lógica de negocio
+- Los servicios están basados en protocolos para inyección de dependencias
+- Todas las dependencias pueden ser mockeadas para testing
 
-### Project Structure
+### Estructura del Proyecto
 
 ```
 iosWeather/
-├── Models/                     # Data models (Codable)
-│   ├── WeatherData.swift       # API response models
-│   ├── Location.swift          # Location & geocoding models
-│   └── SearchHistory.swift     # Persistence models
+├── Models/                     # Modelos de datos (Codable)
+│   ├── WeatherData.swift       # Modelos de respuesta API
+│   ├── Location.swift          # Modelos de ubicación y geocodificación
+│   └── SearchHistory.swift     # Modelos de persistencia
 │
-├── Services/                   # Business logic layer
-│   ├── NetworkService.swift    # Alamofire wrapper (protocol-based)
-│   ├── LocationService.swift   # CoreLocation wrapper
-│   └── StorageService.swift    # UserDefaults persistence
+├── Services/                   # Capa de lógica de negocio
+│   ├── NetworkService.swift    # Wrapper de Alamofire (basado en protocolos)
+│   ├── LocationService.swift   # Wrapper de CoreLocation
+│   └── StorageService.swift    # Persistencia con UserDefaults
 │
-├── ViewModels/                 # MVVM ViewModels
+├── ViewModels/                 # ViewModels MVVM
 │   ├── CurrentWeatherViewModel.swift
 │   ├── SearchViewModel.swift
 │   └── HistoryViewModel.swift
 │
-├── Views/                      # SwiftUI views
-│   ├── MainTabView.swift       # Tab navigation
+├── Views/                      # Vistas SwiftUI
+│   ├── MainTabView.swift       # Navegación por tabs
 │   ├── CurrentWeatherView.swift
 │   ├── SearchView.swift
 │   ├── HistoryView.swift
-│   └── Components/             # Reusable components
+│   └── Components/             # Componentes reutilizables
 │       ├── WeatherCardView.swift
 │       └── LoadingView.swift
 │
-└── iosWeatherApp.swift         # App entry point
+└── iosWeatherApp.swift         # Punto de entrada de la app
 
 iosWeatherTests/
-├── Mocks/                      # Protocol implementations for testing
+├── Mocks/                      # Implementaciones de protocolos para testing
 │   ├── MockNetworkService.swift
 │   ├── MockLocationService.swift
 │   └── MockStorageService.swift
 │
-└── ViewModelTests/             # Unit tests (XCTest)
+└── ViewModelTests/             # Pruebas unitarias (XCTest)
     ├── CurrentWeatherViewModelTests.swift
     ├── SearchViewModelTests.swift
     └── HistoryViewModelTests.swift
 ```
 
-### Dependency Injection
+### Inyección de Dependencias
 
-All services use protocol-based DI:
+Todos los servicios usan DI basada en protocolos:
 
 ```swift
-// Protocol definition
+// Definición de protocolo
 protocol NetworkServiceProtocol {
     func fetchWeather(latitude: Double, longitude: Double) async throws -> WeatherResponse
 }
 
-// Production implementation
+// Implementación de producción
 class NetworkService: NetworkServiceProtocol { ... }
 
-// Mock implementation
+// Implementación mock
 class MockNetworkService: NetworkServiceProtocol { ... }
 
-// ViewModel injection
+// Inyección en ViewModel
 class CurrentWeatherViewModel {
     init(networkService: NetworkServiceProtocol) { ... }
 }
 ```
 
-### State Management
+### Gestión de Estado
 
-ViewModels use `ViewState` enum for UI state:
+Los ViewModels usan el enum `ViewState` para el estado de la UI:
 
 ```swift
 enum ViewState: Equatable {
@@ -152,55 +152,55 @@ enum ViewState: Equatable {
 }
 ```
 
-Views react to state changes via `@Published` properties.
+Las vistas reaccionan a cambios de estado vía propiedades `@Published`.
 
-### API Integration
+### Integración con API
 
-**Open-Meteo API** endpoints:
-- Weather: `https://api.open-meteo.com/v1/forecast`
-- Geocoding: `https://geocoding-api.open-meteo.com/v1/search`
+Endpoints de **Open-Meteo API**:
+- Clima: `https://api.open-meteo.com/v1/forecast`
+- Geocodificación: `https://geocoding-api.open-meteo.com/v1/search`
 
-No API key required. All requests are GET with query parameters.
+No requiere API key. Todas las peticiones son GET con parámetros de consulta.
 
-### Data Persistence
+### Persistencia de Datos
 
-Search history is stored in `UserDefaults` as JSON:
-- Max 20 items
-- Sorted by date (newest first)
-- Duplicates are moved to top
+El historial de búsquedas se almacena en `UserDefaults` como JSON:
+- Máximo 20 items
+- Ordenados por fecha (más reciente primero)
+- Los duplicados se mueven al inicio
 
 ## Testing
 
-### Test Framework
+### Framework de Testing
 
-**XCTest** is used for unit tests (not Swift Testing for test files).
+Se usa **XCTest** para pruebas unitarias (no Swift Testing para archivos de test).
 
-### Run Tests
+### Ejecutar Tests
 
-**All tests:**
+**Todos los tests:**
 ```bash
 xcodebuild test -project iosWeather.xcodeproj -scheme iosWeather -destination 'platform=iOS Simulator,name=iPhone 15'
 ```
 
-**Specific test file:**
+**Archivo de test específico:**
 ```bash
 xcodebuild test -project iosWeather.xcodeproj -scheme iosWeather -destination 'platform=iOS Simulator,name=iPhone 15' -only-testing:iosWeatherTests/CurrentWeatherViewModelTests
 ```
 
-**Single test method:**
+**Método de test individual:**
 ```bash
 xcodebuild test -project iosWeather.xcodeproj -scheme iosWeather -destination 'platform=iOS Simulator,name=iPhone 15' -only-testing:iosWeatherTests/CurrentWeatherViewModelTests/testFetchCurrentLocationWeather_Success
 ```
 
-### Testing Strategy
+### Estrategia de Testing
 
-- **Unit Tests**: All ViewModels have comprehensive test coverage
-- **Mock Services**: Protocol-based mocks for all external dependencies
-- **Test Coverage**: Loading states, success cases, error handling
+- **Pruebas Unitarias**: Todos los ViewModels tienen cobertura exhaustiva de tests
+- **Servicios Mock**: Mocks basados en protocolos para todas las dependencias externas
+- **Cobertura de Tests**: Estados de carga, casos de éxito, manejo de errores
 
-### Writing Tests
+### Escribir Tests
 
-Example test structure:
+Ejemplo de estructura de test:
 
 ```swift
 @MainActor
@@ -214,68 +214,68 @@ final class CurrentWeatherViewModelTests: XCTestCase {
     }
 
     func testFetchWeather_Success() async {
-        // Given: Mock configured
+        // Given: Mock configurado
         mockNetworkService.weatherResponse = MockNetworkService.createMockWeatherResponse()
 
-        // When: Action performed
+        // When: Acción realizada
         await sut.fetchCurrentLocationWeather()
 
-        // Then: Assertions
+        // Then: Aserciones
         XCTAssertEqual(sut.state, .loaded(...))
     }
 }
 ```
 
-## Common Development Tasks
+## Tareas Comunes de Desarrollo
 
-### Adding a New Feature
+### Agregar una Nueva Característica
 
-1. **Create Model** in `Models/` if needed (must be `Codable` for API models)
-2. **Update Service** protocol and implementation in `Services/`
-3. **Create ViewModel** in `ViewModels/` with `@Published` state
-4. **Build View** in `Views/` that observes ViewModel
-5. **Create Mock** in `iosWeatherTests/Mocks/`
-6. **Write Tests** in `iosWeatherTests/ViewModelTests/`
+1. **Crear Modelo** en `Models/` si es necesario (debe ser `Codable` para modelos de API)
+2. **Actualizar Servicio** protocolo e implementación en `Services/`
+3. **Crear ViewModel** en `ViewModels/` con estado `@Published`
+4. **Construir Vista** en `Views/` que observa el ViewModel
+5. **Crear Mock** en `iosWeatherTests/Mocks/`
+6. **Escribir Tests** en `iosWeatherTests/ViewModelTests/`
 
-### Modifying API Integration
+### Modificar Integración con API
 
-All network calls go through `NetworkService.swift`. The service uses Alamofire and converts callbacks to async/await.
+Todas las llamadas de red pasan por `NetworkService.swift`. El servicio usa Alamofire y convierte callbacks a async/await.
 
-To add a new endpoint:
-1. Add method to `NetworkServiceProtocol`
-2. Implement in `NetworkService` using Alamofire
-3. Add mock implementation to `MockNetworkService`
+Para agregar un nuevo endpoint:
+1. Agregar método a `NetworkServiceProtocol`
+2. Implementar en `NetworkService` usando Alamofire
+3. Agregar implementación mock a `MockNetworkService`
 
-### Adding New Dependencies
+### Agregar Nuevas Dependencias
 
-Use SPM only. Add through Xcode:
+Usar solo SPM. Agregar a través de Xcode:
 1. File → Add Package Dependencies
-2. Enter repository URL
-3. Select version rules
-4. Add to appropriate targets
+2. Ingresar URL del repositorio
+3. Seleccionar reglas de versión
+4. Agregar a targets apropiados
 
-## Code Style
+## Estilo de Código
 
-- Use `async/await` for asynchronous operations
-- Use `Combine` only for reactive UI bindings
-- All ViewModels must be `@MainActor`
-- Use `private(set)` for published properties
-- Protocol names end with `Protocol` suffix
-- Mock classes start with `Mock` prefix
+- Usar `async/await` para operaciones asíncronas
+- Usar `Combine` solo para bindings reactivos de UI
+- Todos los ViewModels deben ser `@MainActor`
+- Usar `private(set)` para propiedades publicadas
+- Los nombres de protocolos terminan con sufijo `Protocol`
+- Las clases mock comienzan con prefijo `Mock`
 
-## Troubleshooting
+## Solución de Problemas
 
-### Location Permission Issues
-- Ensure `Info.plist` has location usage descriptions
-- Check system Settings → Privacy → Location Services
-- Reset simulator: Device → Erase All Content and Settings
+### Problemas con Permisos de Ubicación
+- Asegurar que `Info.plist` tenga descripciones de uso de ubicación
+- Revisar Ajustes del sistema → Privacidad → Servicios de Ubicación
+- Reiniciar simulador: Device → Erase All Content and Settings
 
-### SPM Dependencies Not Found
+### Dependencias SPM No Encontradas
 - File → Packages → Reset Package Caches
 - File → Packages → Resolve Package Versions
-- Clean build folder: Cmd+Shift+K
+- Limpiar carpeta de build: Cmd+Shift+K
 
-### Tests Failing
-- Ensure tests are run on main actor: `@MainActor`
-- Check mock configurations in `setUp()`
-- Verify async operations use `await`
+### Tests Fallando
+- Asegurar que los tests se ejecuten en main actor: `@MainActor`
+- Revisar configuraciones de mock en `setUp()`
+- Verificar que las operaciones async usen `await`
