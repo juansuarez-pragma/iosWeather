@@ -39,7 +39,7 @@ struct SearchView: View {
                     contentView
                 }
             }
-            .navigationTitle("Search City")
+            .navigationTitle("Buscar Ciudad")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
@@ -51,7 +51,7 @@ struct SearchView: View {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(.secondary)
 
-            TextField("Search for a city...", text: $viewModel.searchQuery)
+            TextField("Buscar una ciudad...", text: $viewModel.searchQuery)
                 .textFieldStyle(PlainTextFieldStyle())
                 .autocorrectionDisabled()
 
@@ -80,17 +80,17 @@ struct SearchView: View {
             } else {
                 EmptyStateView(
                     icon: "magnifyingglass",
-                    title: "Search Weather",
-                    message: "Enter a city name to search for weather information"
+                    title: "Buscar Clima",
+                    message: "Ingresa el nombre de una ciudad para buscar información del clima"
                 )
             }
         } else if viewModel.isSearching {
-            LoadingView(message: "Searching cities...")
+            LoadingView(message: "Buscando ciudades...")
         } else if viewModel.searchResults.isEmpty {
             EmptyStateView(
                 icon: "map",
-                title: "No Results",
-                message: "No cities found for '\(viewModel.searchQuery)'"
+                title: "Sin Resultados",
+                message: "No se encontraron ciudades para '\(viewModel.searchQuery)'"
             )
         } else {
             searchResultsList
@@ -122,7 +122,7 @@ struct SearchView: View {
     private func weatherResultView(_ weather: WeatherDisplayModel) -> some View {
         switch viewModel.weatherState {
         case .loading:
-            LoadingView(message: "Loading weather...")
+            LoadingView(message: "Cargando clima...")
 
         case .loaded:
             ScrollView {
@@ -133,7 +133,7 @@ struct SearchView: View {
                     Button(action: {
                         viewModel.clearWeather()
                     }) {
-                        Label("New Search", systemImage: "magnifyingglass")
+                        Label("Nueva Búsqueda", systemImage: "magnifyingglass")
                             .font(.headline)
                             .foregroundColor(.white)
                             .padding(.horizontal, 30)

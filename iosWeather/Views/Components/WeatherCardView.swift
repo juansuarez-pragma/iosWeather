@@ -43,7 +43,7 @@ struct WeatherCardView: View {
                     Text(weather.humidity)
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    Text("Humidity")
+                    Text("Humedad")
                         .font(.caption2)
                         .foregroundColor(.secondary)
                 }
@@ -54,7 +54,7 @@ struct WeatherCardView: View {
                     Text(weather.windSpeed)
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    Text("Wind Speed")
+                    Text("Velocidad del Viento")
                         .font(.caption2)
                         .foregroundColor(.secondary)
                 }
@@ -62,7 +62,7 @@ struct WeatherCardView: View {
             .padding(.top, 10)
 
             // Last updated
-            Text("Updated: \(formattedDate(weather.lastUpdated))")
+            Text("Actualizado: \(formattedDate(weather.lastUpdated))")
                 .font(.caption2)
                 .foregroundColor(.secondary)
                 .padding(.top, 5)

@@ -32,20 +32,20 @@ struct CurrentWeatherView: View {
                 // Content
                 contentView
             }
-            .navigationTitle("Current Weather")
+            .navigationTitle("Clima Actual")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     refreshButton
                 }
             }
-            .alert("Location Permission Required", isPresented: $viewModel.showLocationPermissionAlert) {
+            .alert("Permiso de Ubicación Requerido", isPresented: $viewModel.showLocationPermissionAlert) {
                 Button("OK", role: .cancel) { }
-                Button("Open Settings") {
+                Button("Abrir Ajustes") {
                     openSettings()
                 }
             } message: {
-                Text("Please enable location access in Settings to see weather for your current location.")
+                Text("Por favor habilita el acceso a la ubicación en Ajustes para ver el clima de tu ubicación actual.")
             }
         }
         .task {
@@ -61,12 +61,12 @@ struct CurrentWeatherView: View {
         case .idle:
             EmptyStateView(
                 icon: "location.fill",
-                title: "Ready",
-                message: "Tap refresh to get weather for your current location"
+                title: "Listo",
+                message: "Toca actualizar para obtener el clima de tu ubicación actual"
             )
 
         case .loading:
-            LoadingView(message: "Getting your location...")
+            LoadingView(message: "Obteniendo tu ubicación...")
 
         case .loaded(let weather):
             ScrollView {

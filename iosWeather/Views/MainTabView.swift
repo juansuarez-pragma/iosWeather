@@ -44,7 +44,7 @@ struct MainTabView: View {
                 )
             )
             .tabItem {
-                Label("Current", systemImage: "location.fill")
+                Label("Actual", systemImage: "location.fill")
             }
             .tag(0)
 
@@ -56,7 +56,7 @@ struct MainTabView: View {
                 )
             )
             .tabItem {
-                Label("Search", systemImage: "magnifyingglass")
+                Label("Buscar", systemImage: "magnifyingglass")
             }
             .tag(1)
 
@@ -68,7 +68,7 @@ struct MainTabView: View {
                 )
             )
             .tabItem {
-                Label("History", systemImage: "clock.fill")
+                Label("Historial", systemImage: "clock.fill")
             }
             .tag(2)
         }

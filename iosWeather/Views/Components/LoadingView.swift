@@ -12,7 +12,7 @@ import SwiftUI
 /// Reusable loading indicator component
 struct LoadingView: View {
 
-    var message: String = "Loading..."
+    var message: String = "Cargando..."
 
     var body: some View {
         VStack(spacing: 20) {
@@ -41,7 +41,7 @@ struct ErrorView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.orange)
 
-            Text("Oops!")
+            Text("¡Ups!")
                 .font(.title)
                 .fontWeight(.semibold)
 
@@ -53,7 +53,7 @@ struct ErrorView: View {
 
             if let retryAction = retryAction {
                 Button(action: retryAction) {
-                    Label("Try Again", systemImage: "arrow.clockwise")
+                    Label("Intentar de Nuevo", systemImage: "arrow.clockwise")
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding(.horizontal, 30)
@@ -104,7 +104,7 @@ struct EmptyStateView: View {
 }
 
 #Preview("Error") {
-    ErrorView(message: "Unable to fetch weather data. Please check your internet connection.") {
+    ErrorView(message: "No se pudo obtener los datos del clima. Por favor verifica tu conexión a internet.") {
         print("Retry tapped")
     }
 }
@@ -112,7 +112,7 @@ struct EmptyStateView: View {
 #Preview("Empty State") {
     EmptyStateView(
         icon: "magnifyingglass",
-        title: "No Results",
-        message: "Try searching for a different city"
+        title: "Sin Resultados",
+        message: "Intenta buscar una ciudad diferente"
     )
 }

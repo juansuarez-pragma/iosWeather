@@ -31,7 +31,7 @@ struct HistoryView: View {
 
                 contentView
             }
-            .navigationTitle("Search History")
+            .navigationTitle("Historial de Búsqueda")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 if !viewModel.historyItems.isEmpty {
@@ -64,8 +64,8 @@ struct HistoryView: View {
         if viewModel.historyItems.isEmpty {
             EmptyStateView(
                 icon: "clock.fill",
-                title: "No History",
-                message: "Your search history will appear here"
+                title: "Sin Historial",
+                message: "Tu historial de búsquedas aparecerá aquí"
             )
         } else {
             ScrollView {
@@ -83,7 +83,7 @@ struct HistoryView: View {
                                         viewModel.deleteItem(item)
                                     }
                                 } label: {
-                                    Label("Delete", systemImage: "trash")
+                                    Label("Eliminar", systemImage: "trash")
                                 }
                             }
                     }
@@ -99,7 +99,7 @@ struct HistoryView: View {
     private func weatherDetailView(_ weather: WeatherDisplayModel) -> some View {
         switch viewModel.weatherState {
         case .loading:
-            LoadingView(message: "Loading weather...")
+            LoadingView(message: "Cargando clima...")
 
         case .loaded:
             ScrollView {
@@ -110,7 +110,7 @@ struct HistoryView: View {
                     Button(action: {
                         viewModel.clearWeather()
                     }) {
-                        Label("Back to History", systemImage: "clock.arrow.circlepath")
+                        Label("Volver al Historial", systemImage: "clock.arrow.circlepath")
                             .font(.headline)
                             .foregroundColor(.white)
                             .padding(.horizontal, 30)
@@ -141,7 +141,7 @@ struct HistoryView: View {
                 viewModel.clearAllHistory()
             }
         }) {
-            Text("Clear All")
+            Text("Limpiar Todo")
                 .foregroundColor(.red)
         }
     }
