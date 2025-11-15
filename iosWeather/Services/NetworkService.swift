@@ -20,15 +20,15 @@ enum NetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidURL:
-            return "Invalid URL"
+            return "URL inválida"
         case .noData:
-            return "No data received"
+            return "No se recibieron datos"
         case .decodingError(let error):
-            return "Failed to decode data: \(error.localizedDescription)"
+            return "Error al decodificar datos: \(error.localizedDescription)"
         case .networkError(let error):
-            return "Network error: \(error.localizedDescription)"
+            return "Error de red: \(error.localizedDescription)"
         case .serverError(let statusCode):
-            return "Server error with status code: \(statusCode)"
+            return "Error del servidor con código: \(statusCode)"
         }
     }
 }

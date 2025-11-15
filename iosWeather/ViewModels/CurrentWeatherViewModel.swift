@@ -74,8 +74,8 @@ final class CurrentWeatherViewModel: ObservableObject {
                 longitude: coordinates.longitude
             )
 
-            // Try to get city name via reverse geocoding (simplified - just use "Current Location")
-            let cityName = "Current Location"
+            // Try to get city name via reverse geocoding (simplified - just use "Ubicación Actual")
+            let cityName = "Ubicación Actual"
             let displayModel = WeatherDisplayModel(from: weatherResponse, cityName: cityName)
 
             state = .loaded(displayModel)
@@ -85,7 +85,7 @@ final class CurrentWeatherViewModel: ObservableObject {
         } catch let error as NetworkError {
             state = .error(error.localizedDescription)
         } catch {
-            state = .error("An unexpected error occurred")
+            state = .error("Ocurrió un error inesperado")
         }
     }
 

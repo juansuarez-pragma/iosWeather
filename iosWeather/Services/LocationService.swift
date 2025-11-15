@@ -19,11 +19,11 @@ enum LocationError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .permissionDenied:
-            return "Location permission denied. Please enable location access in Settings."
+            return "Permiso de ubicación denegado. Por favor habilita el acceso a la ubicación en Ajustes."
         case .locationUnavailable:
-            return "Unable to determine your location. Please try again."
+            return "No se pudo determinar tu ubicación. Por favor intenta de nuevo."
         case .unknown(let error):
-            return "Location error: \(error.localizedDescription)"
+            return "Error de ubicación: \(error.localizedDescription)"
         }
     }
 }

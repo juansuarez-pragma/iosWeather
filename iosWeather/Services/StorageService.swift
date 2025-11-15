@@ -18,13 +18,13 @@ enum StorageError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .encodingError:
-            return "Failed to encode data"
+            return "Error al codificar datos"
         case .decodingError:
-            return "Failed to decode data"
+            return "Error al decodificar datos"
         case .writeError:
-            return "Failed to write data"
+            return "Error al escribir datos"
         case .readError:
-            return "Failed to read data"
+            return "Error al leer datos"
         }
     }
 }

@@ -85,20 +85,20 @@ struct WeatherDisplayModel {
 struct WeatherCodeMapper {
     static func description(for code: Int) -> String {
         switch code {
-        case 0: return "Clear sky"
-        case 1: return "Mainly clear"
-        case 2: return "Partly cloudy"
-        case 3: return "Overcast"
-        case 45, 48: return "Foggy"
-        case 51, 53, 55: return "Drizzle"
-        case 61, 63, 65: return "Rain"
-        case 71, 73, 75: return "Snow"
-        case 77: return "Snow grains"
-        case 80, 81, 82: return "Rain showers"
-        case 85, 86: return "Snow showers"
-        case 95: return "Thunderstorm"
-        case 96, 99: return "Thunderstorm with hail"
-        default: return "Unknown"
+        case 0: return "Cielo despejado"
+        case 1: return "Mayormente despejado"
+        case 2: return "Parcialmente nublado"
+        case 3: return "Nublado"
+        case 45, 48: return "Niebla"
+        case 51, 53, 55: return "Llovizna"
+        case 61, 63, 65: return "Lluvia"
+        case 71, 73, 75: return "Nieve"
+        case 77: return "Granizo"
+        case 80, 81, 82: return "Chubascos"
+        case 85, 86: return "Nevadas"
+        case 95: return "Tormenta"
+        case 96, 99: return "Tormenta con granizo"
+        default: return "Desconocido"
         }
     }
 
